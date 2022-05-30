@@ -9,7 +9,7 @@ function App() {
   const fetchData = async (searchString) => {
     setLoading(true);
     const response = await axios.get(
-      `http://api.weatherapi.com/v1/forecast.json?key=62510fd6820a495880f21357223005&q=${searchString}&days=5&aqi=no&alerts=no`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchString}?unitGroup=metric&key=YKU5L63R464SLFNBD3FGLJC9N&contentType=json`
     );
     setLoading(false);
     setWeatherList(response.data);
@@ -29,8 +29,8 @@ function App() {
   const searchInput = useRef("");
 
   return (
-    <div className="app">
-      <div id="searchBox">
+    <div id="app">
+      <div className="searchBox">
         <img onClick={search} id="searchIcon" src="/search-icon.svg" alt="" />
         <input
           ref={searchInput}
