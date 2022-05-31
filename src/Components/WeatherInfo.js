@@ -1,3 +1,4 @@
+//Object to convert the number of day to string
 const getDay = [
   "Sunday",
   "Monday",
@@ -15,10 +16,20 @@ const WeatherInfo = (props) => {
       {days?.slice(0, 5).map((item, index) => (
         <div className="weatherItem" key={index}>
           <div className="weatherDay">
-            {getDay[new Date(item.datetime).getDay()]}
+            {/*Returns the day of the week (0–6) for the specified date according to local time.*/}
+            {getDay[new Date(item.datetime).getDay()]}{" "}
           </div>
-          <div className="weatherMin">Min: {item.tempmin}</div>
-          <div className="weatherMax">Max: {item.tempmax}</div>
+          <img className="weatherIcon" src={`/icon/${item.icon}.png`} alt="" />
+          <div className="temperature">
+            <div className="weatherMax">
+              {item.tempmax}
+              <sup>o</sup>
+            </div>
+            <div className="weatherMin">
+              {item.tempmin}
+              <sup>o</sup>
+            </div>
+          </div>
         </div>
       ))}
     </div>

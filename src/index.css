@@ -16,31 +16,38 @@ code {
 #root {
   width: 100vw;
   height: 100vh;
-  background-color: #AFE5FA;
+  background-color: #01b0f1;
 }
 
 #app {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   height: 500px;
 }
 
-.searchBox {
+#title {
+  margin-bottom: 50px;
+  color: #fff;
+  font-weight: 600;
+}
+
+#searchIcon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+#searchBox {
   display: flex;
   flex-direction: row;
   padding: 5px 10px;
   background-color: white;
   border-radius: 6px;
   width: 300px;
-  border: 2px solid #737373;
+  border: 1px solid #737373;
 }
 
-#searchIcon {
-  width: 32px;
-  height: 32px;
-}
 
 #searchInput {
   color: #333;
@@ -56,15 +63,15 @@ code {
   flex-direction: row;
   width: 700px;
   padding: 20px;
-  border: 2px dashed #737373;
   margin-top: 20px;
+  background-color: #fff;
 }
 
 .weatherItem {
   width: 25%;
-  height: 120px;
-  border: 1px dashed #737373;
-  margin: 10px;
+  height: 150px;
+  border-right: 1px solid #737373;
+  margin: 10px 0px;
   text-align: center;
   color: #333;
   line-height: 1.5;
@@ -74,7 +81,34 @@ code {
   justify-content: center;
 }
 
+.weatherItem:first-child {
+  border-left: 1px solid #737373;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
 .weatherDay {
   margin-bottom: 10px;
   font-weight: 500;
+}
+
+.weatherMax {
+  margin-right: 5px;
+  color: #333;
+  font-weight: 600;
+}
+
+sup {
+  font-size: 10px;
+}
+
+.weatherIcon {
+  width: 50px;
+  height: 50px;
+  object-fit: content;
+  margin-bottom: 10px;
 }

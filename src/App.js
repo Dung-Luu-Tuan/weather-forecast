@@ -5,6 +5,7 @@ import WeatherInfo from "./Components/WeatherInfo";
 function App() {
   const [weatherList, setWeatherList] = useState();
   const [loading, setLoading] = useState(false);
+  const searchInput = useRef("");
 
   const fetchData = async (searchString) => {
     setLoading(true);
@@ -22,15 +23,16 @@ function App() {
   };
 
   const search = () => {
-    const value = searchInput.current.value;
-    fetchData(value);
+    if (searchInput.current.value) {
+      const value = searchInput.current.value;
+      fetchData(value);
+    }
   };
-
-  const searchInput = useRef("");
 
   return (
     <div id="app">
-      <div className="searchBox">
+      <h1 id="title">Weather Forecast App</h1>
+      <div id="searchBox">
         <img onClick={search} id="searchIcon" src="/search-icon.svg" alt="" />
         <input
           ref={searchInput}
