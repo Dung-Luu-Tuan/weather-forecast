@@ -9,11 +9,15 @@ function App() {
 
   const fetchData = async (searchString) => {
     setLoading(true);
-    const response = await axios.get(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchString}?unitGroup=metric&key=YKU5L63R464SLFNBD3FGLJC9N&contentType=json`
-    );
+    try {
+      const response = await axios.get(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchString}?unitGroup=metric&key=YKU5L63R464SLFNBD3FGLJC9N&contentType=json`
+      );
+      setWeatherList(response.data);
+    } catch {
+      setWeatherList();
+    }
     setLoading(false);
-    setWeatherList(response.data);
   };
 
   const onPressEnter = (event) => {
@@ -29,6 +33,21 @@ function App() {
     }
   };
 
+  const Container = () => {
+    return (
+      <>
+        {!loading && weatherList && <WeatherInfo item={weatherList} />}
+        {loading && <div className="inputLoading">Loading...</div>}
+        {!loading && !weatherList && searchInput.current.value && (
+          <div className="inputMessage">
+            No data available <br /> Invalid location found. Please check your
+            location parameter: {searchInput.current.value}
+          </div>
+        )}
+      </>
+    );
+  };
+
   return (
     <div id="app">
       <h1 id="title">Weather Forecast App</h1>
@@ -42,10 +61,7 @@ function App() {
           onKeyPress={onPressEnter}
         />
       </div>
-      <div className="container">
-        {!loading && weatherList && <WeatherInfo item={weatherList} />}
-        {loading && "Loading..."}
-      </div>
+      <Container />
     </div>
   );
 }
