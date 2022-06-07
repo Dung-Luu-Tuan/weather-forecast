@@ -20,7 +20,7 @@ function App() {
     setLoading(false);
   };
 
-  const onPressEnter = (event) => {
+  const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       search();
     }
@@ -57,8 +57,8 @@ function App() {
           ref={searchInput}
           type="text"
           id="searchInput"
-          placeholder="Search"
-          onKeyPress={onPressEnter}
+          placeholder="Your city"
+          onKeyPress={handleKeyPress}
         />
       </div>
       <Container />

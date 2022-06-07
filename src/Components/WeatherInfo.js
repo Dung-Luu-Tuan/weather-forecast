@@ -23,11 +23,11 @@ const WeatherInfo = (props) => {
           <div className="temperature">
             <div className="weatherMax">
               {item.tempmax}
-              <sup>o</sup>C
+              <sup> o</sup>C
             </div>
             <div className="weatherMin">
               {item.tempmin}
-              <sup>o</sup>C
+              <sup> o</sup>C
             </div>
           </div>
         </div>
