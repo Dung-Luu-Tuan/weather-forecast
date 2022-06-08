@@ -112,10 +112,9 @@ body {
 .weatherDay {
   margin-bottom: 10px;
   font-weight: 500;
-
 }
 
-.weatherMax {
+.tempMax {
   font-weight: 600;
 }
 

@@ -21,11 +21,11 @@ const WeatherInfo = (props) => {
           </div>
           <img className="weatherIcon" src={`/icon/${item.icon}.png`} alt="" />
           <div className="temperature">
-            <div className="weatherMax">
+            <div className="tempMax">
               {item.tempmax}
               <sup> o</sup>C
             </div>
-            <div className="weatherMin">
+            <div className="temperatureMin">
               {item.tempmin}
               <sup> o</sup>C
             </div>
