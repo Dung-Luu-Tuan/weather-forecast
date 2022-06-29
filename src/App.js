@@ -37,9 +37,13 @@ function App() {
     return (
       <>
         {!loading && weatherList && <WeatherInfo item={weatherList} />}
-        {loading && <div className="inputLoading">Loading...</div>}
+        {loading && (
+          <div className="text-semiWhite font-semibold p-4 text-base">
+            Loading...
+          </div>
+        )}
         {!loading && !weatherList && searchInput.current.value && (
-          <div className="inputMessage">
+          <div className="text-semiWhite font-normal text-xl p-4 text-center">
             No data available <br /> Invalid location found. Please check your
             location parameter: {searchInput.current.value}
           </div>
@@ -49,14 +53,21 @@ function App() {
   };
 
   return (
-    <div id="app">
-      <h1 id="title">Weather Forecast App</h1>
-      <div id="searchBox">
-        <img onClick={search} id="searchIcon" src="/search-icon.svg" alt="" />
+    <div className="flex items-center flex-col">
+      <h1 className="mb-12 mt-8 text-semiWhite text-4xl font-semibold">
+        Weather Forecast App
+      </h1>
+      <div className="flex flex-row px-2.5 py-1.5 bg-semiWhite rounded-md w-80 border-solid border border-searchColor">
+        <img
+          onClick={search}
+          className="w-8 h-8 cursor-pointer"
+          src="/search-icon.svg"
+          alt=""
+        />
         <input
           ref={searchInput}
           type="text"
-          id="searchInput"
+          className="text-semiblack border-none outline-none ml-4"
           placeholder="Your city"
           onKeyPress={handleKeyPress}
         />

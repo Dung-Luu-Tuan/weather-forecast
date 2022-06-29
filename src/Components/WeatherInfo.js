@@ -12,20 +12,27 @@ const ConvertDate = [
 const WeatherInfo = (props) => {
   const { days } = props?.item;
   return (
-    <div className="weatherList">
+    <div className="flex flex-row w-700 p-5 mt-5 bg-semiWhite">
       {days?.slice(0, 5).map((item, index) => (
-        <div className="weatherItem" key={index}>
-          <div className="weatherDay">
+        <div
+          className="flex flex-col items-center justify-center w-1/4 h-38 border-r border-solid border-itemColor my-3 text-center text-semiblack leading-normal first:text-itemFirst  last:border-r-0"
+          key={index}
+        >
+          <div className="mb-3 font-medium">
             {/*Returns the day of the week (0–6) for the specified date according to local time.*/}
             {ConvertDate[new Date(item.datetime).getDay()]}
           </div>
-          <img className="weatherIcon" src={`/icon/${item.icon}.png`} alt="" />
-          <div className="temperature">
-            <div className="tempMax">
+          <img
+            className="w-12 h-12 object-cover mb-3"
+            src={`/icon/${item.icon}.png`}
+            alt=""
+          />
+          <div className="flex flex-col p-2">
+            <div className="font-semibold">
               {item.tempmax}
               <sup> o</sup>C
             </div>
-            <div className="temperatureMin">
+            <div>
               {item.tempmin}
               <sup> o</sup>C
             </div>
