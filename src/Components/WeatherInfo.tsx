@@ -1,4 +1,6 @@
 //Object to convert the number of day to string
+import React from "react";
+import { Weather } from "../interface";
 const ConvertDate = [
   "Sunday",
   "Monday",
@@ -9,11 +11,15 @@ const ConvertDate = [
   "Saturday",
 ];
 
-const WeatherInfo = (props) => {
-  const { days } = props?.item;
+interface Props {
+  weatherList: Weather[];
+}
+
+const WeatherInfo: React.FC<Props> = (props) => {
+  const { weatherList } = props;
   return (
     <div className="flex flex-row w-700 p-5 mt-5 bg-semiWhite">
-      {days?.slice(0, 5).map((item, index) => (
+      {weatherList.slice(0, 5).map((item, index) => (
         <div
           className="flex flex-col items-center justify-center w-1/4 h-38 border-r border-solid border-itemColor my-3 text-center text-semiblack leading-normal first:text-itemFirst  last:border-r-0"
           key={index}

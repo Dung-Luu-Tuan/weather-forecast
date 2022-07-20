@@ -1,33 +1,35 @@
 import { useState, useRef } from "react";
+import React from "react";
 import axios from "axios";
 import WeatherInfo from "./Components/WeatherInfo";
+import { Weather } from "./interface";
 
 function App() {
-  const [weatherList, setWeatherList] = useState();
-  const [loading, setLoading] = useState(false);
-  const searchInput = useRef("");
+  const [weatherList, setWeatherList] = useState<Weather[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const searchInput = useRef<HTMLInputElement>(undefined!);
 
-  const fetchData = async (searchString) => {
+  const fetchData = async (searchString: string) => {
     setLoading(true);
     try {
       const response = await axios.get(
         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchString}?unitGroup=metric&key=YKU5L63R464SLFNBD3FGLJC9N&contentType=json`
       );
-      setWeatherList(response.data);
+      setWeatherList(response.data.days);
     } catch {
-      setWeatherList();
+      setWeatherList([]);
     }
     setLoading(false);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
       search();
     }
   };
 
   const search = () => {
-    if (searchInput.current.value) {
+    if (searchInput.current?.value) {
       const value = searchInput.current.value;
       fetchData(value);
     }
@@ -36,18 +38,20 @@ function App() {
   const Container = () => {
     return (
       <>
-        {!loading && weatherList && <WeatherInfo item={weatherList} />}
         {loading && (
           <div className="text-semiWhite font-semibold p-4 text-base">
             Loading...
           </div>
         )}
-        {!loading && !weatherList && searchInput.current.value && (
+
+        {!loading && weatherList.length === 0 && searchInput.current?.value && (
           <div className="text-semiWhite font-normal text-xl p-4 text-center">
             No data available <br /> Invalid location found. Please check your
-            location parameter: {searchInput.current.value}
+            location parameter: {searchInput.current?.value}
           </div>
         )}
+
+        {!loading && weatherList.length > 0 && <WeatherInfo weatherList={weatherList} />}
       </>
     );
   };
